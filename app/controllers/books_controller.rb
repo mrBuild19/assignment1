@@ -21,6 +21,7 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     @book = Book.new(book_params)
+    @books = Book.all
     if @book.save
       redirect_to @book, notice: 'Book was successfully created.'
     else
@@ -31,7 +32,7 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
-    if @book.update()
+    if @book.update(book_params)
       redirect_to @book, notice: 'Book was successfully updated.'
     else
       render :edit
